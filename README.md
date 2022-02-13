@@ -39,14 +39,12 @@ This starter has minimal prerequisites and most of these will usually already be
   npm install -g @medusajs/medusa
   yarn global add @medusajs/medusa
   ```
-- Create a new Medusa project
-  ```
-  medusa new my-medusa-store
-  ```
 - Run your project
   ```
-  cd my-medusa-store
-  medusa develop
+  cd backend-server
+  npm start
+  ```
+  npm install
   ```
 
 Your local Medusa server is now running on port **9000**.
@@ -59,62 +57,13 @@ To seed your medusa store run the following command:
 
 ```
 medusa seed -f ./data/seed.json
+or npm seed
 ```
 
 This command seeds your database with some sample datal to get you started, including a store, an administrator account, a region and a product with variants. What the data looks like precisely you can see in the `./data/seed.json` file.
 
-## Setting up your store with Docker
-
-- Install the Medusa CLI
-  ```
-  npm install -g @medusajs/medusa-cli
-  ```
-- Create a new Medusa project
-  ```
-  medusa new my-medusa-store
-  ```
-- Update project config in `medusa-config.js`:
-
-  ```
-  module.exports = {
-    projectConfig: {
-      redis_url: REDIS_URL,
-      database_url: DATABASE_URL, //postgres connectionstring
-      database_type: "postgres",
-      store_cors: STORE_CORS,
-      admin_cors: ADMIN_CORS,
-    },
-    plugins,
-  };
-  ```
-
-- Run your project
-
-  When running your project the first time `docker compose` should be run with the `build` flag to build your contianer locally:
-
-  ```
-  docker compose up --build
-  ```
-
-  When running your project subsequent times you can run docker compose with no flags to spin up your local environment in seconds:
-
-  ```
-  docker compose up
-  ```
 
 Your local Medusa server is now running on port **9000**.
-
-### Seeding your Medusa store with Docker
-
----
-
-To add seed data to your medusa store runnign with Docker, run this command in a seperate terminal:
-
-```
-docker exec medusa-server medusa seed -f ./data/seed.json
-```
-
-This will execute the previously described seed script in the running `medusa-server` Docker container.
 
 ## Try it out
 
@@ -129,22 +78,3 @@ After the seed script has run you will have the following things in you database
 - a Shipping Option called Standard Shipping which costs 10 EUR
 - a Product called Cool Test Product with 4 Product Variants that all cost 19.50 EUR
 
-Visit [docs.medusa-commerce.com](https://docs.medusa-commerce.com) for further guides.
-
-<p>
-  <a href="https://www.medusa-commerce.com">
-    Website
-  </a> 
-  |
-  <a href="https://medusajs.notion.site/medusajs/Medusa-Home-3485f8605d834a07949b17d1a9f7eafd">
-    Notion Home
-  </a>
-  |
-  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
-    Twitter
-  </a>
-  |
-  <a href="https://docs.medusa-commerce.com">
-    Docs
-  </a>
-</p>
